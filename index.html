@@ -31,6 +31,9 @@
 		<!-- Remote markdown slides -->
 		<script>
 			var [originalURL, markdownURL] = window.location.href.split('?');
+			if ( !markdownURL ) {
+				window.location.replace( "error.html" );
+			}
 			var slides = document.createElement('section');
 			slides.setAttribute('data-separator-vertical', '^\\r?\\nVVV\\r?\\n$');
 			slides.setAttribute('data-markdown', decodeURIComponent(markdownURL));
