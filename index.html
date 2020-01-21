@@ -25,10 +25,18 @@
 	<body>
 		<div class="reveal">
 			<div class="slides">
-				<section>Slide 1</section>
-				<section>Slide 2</section>
 			</div>
 		</div>
+
+		<!-- Remote markdown slides -->
+		<script>
+			var [originalURL, markdownURL] = window.location.href.split('?');
+			var slides = document.createElement('section');
+			slides.setAttribute('data-separator-vertical', '^\\r?\\nVVV\\r?\\n$');
+			slides.setAttribute('data-markdown', decodeURIComponent(markdownURL));
+			document.getElementsByClassName('slides')[0].appendChild(slides);
+			window.history.pushState({}, document.title, originalURL);
+		</script>
 
 		<script src="js/reveal.js"></script>
 
