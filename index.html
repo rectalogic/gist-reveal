@@ -30,15 +30,14 @@
 
 		<!-- Remote markdown slides -->
 		<script>
-			var [originalURL, markdownURL] = window.location.href.split('?');
-			if ( !markdownURL ) {
+			var search = new URLSearchParams(window.location.search);
+			if ( !search.has( "markdownURL" ) ) {
 				window.location.replace( "error.html" );
 			}
-			var slides = document.createElement('section');
-			slides.setAttribute('data-separator-vertical', '^\\r?\\nVVV\\r?\\n$');
-			slides.setAttribute('data-markdown', decodeURIComponent(markdownURL));
-			document.getElementsByClassName('slides')[0].appendChild(slides);
-			window.history.pushState({}, document.title, originalURL);
+			var slides = document.createElement( 'section' );
+			slides.setAttribute( 'data-separator-vertical', '^\\r?\\nVVV\\r?\\n$' );
+			slides.setAttribute( 'data-markdown', decodeURIComponent( search.get("markdownURL") ) );
+			document.getElementsByClassName( 'slides' )[0].appendChild( slides );
 		</script>
 
 		<script src="js/reveal.js"></script>
